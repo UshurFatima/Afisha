@@ -12,7 +12,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     duration = models.CharField(max_length=50)
-    director = models.ForeignKey(Director, on_delete=models.RESTRICT, related_name='movie_director')
+    director = models.ForeignKey(Director, on_delete=models.PROTECT, related_name='movie_director')
 
     def __str__(self):
         return f'{self.title} - {self.director}'
