@@ -6,6 +6,13 @@ from rest_framework import status
 
 
 @api_view(http_method_names=['GET'])
+def movie_review_list_api_view(request):
+    movies = models.Movie.objects.all()
+    data = serializers.MovieReviewSerializer(instance=movies, many=True).data
+    return Response(data=data)
+
+
+@api_view(http_method_names=['GET'])
 def movie_list_api_view(request):
     movies = models.Movie.objects.all()
     data = serializers.MovieSerializer(instance=movies, many=True).data
