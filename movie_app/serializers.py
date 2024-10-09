@@ -3,9 +3,14 @@ from . import models
 
 
 class ReviewSerializer(serializers.ModelSerializer):
+    movie_name = serializers.SerializerMethodField()
+
     class Meta:
         model = models.Review
-        fields = 'text stars'.split()
+        fields = 'movie_name text stars'.split()
+
+    def get_movie_name(self, review):
+        return review.movie.title if review.movie else None
 
 
 class MovieSerializer(serializers.ModelSerializer):
